@@ -1,3 +1,19 @@
 -r testing.txt
 
+# Debugging
+django-debug-toolbar
+
+# Documentation
 Sphinx
+
+# Linting/Formatting
+pylint
+yapf
+isort
+autopep8
+
+# Utilities
+pipenv
+pip-review
+pipdeptree
+

@@ -3,3 +3,4 @@
 # to each package in each requirements/*.txt.
 
 Django
+mysqlclient
