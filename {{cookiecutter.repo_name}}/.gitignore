@@ -1,6 +1,5 @@
 .idea
 .coverage
-*.pyc
 node_modules
 __pycache__
 .DS_Store
