@@ -3,7 +3,3 @@
 # to each package in each requirements/*.txt.
 
 Django
-
-django-model-utils
-
-psycopg2

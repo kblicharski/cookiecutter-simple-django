@@ -54,8 +54,8 @@ It prompts you for questions. Answer them::
     year (default is "Current year")? 2013
     with_documentation (default is "yes")? yes
 
-If you are using cookiecutter < 0.7 and you answered *no* to *with_documentation*, you might want to delete the ``docs`` 
-folder. 
+If you are using cookiecutter < 0.7 and you answered *no* to *with_documentation*, you might want to delete the ``docs``
+folder.
 From version 0.7+, that folder is automatically deleted for you.
 
 
@@ -125,36 +125,3 @@ module to ``apps``. If you want to know why this works, just take a look at the 
     sys.path.insert(0, root('apps'))
 
 in ``settings/base.py``.
-
-
-Done!
------
-
-Now, it's time to write the code!!!
-
-
-Not Exactly What You Want?
----------------------------
-
-This is what I want. *It might not be what you want.* Don't worry, you have options:
-
-Fork This
-~~~~~~~~~~
-
-If you have differences in your preferred setup, I encourage you to fork this to create your own version.
-Once you have your fork working, let me know and I'll add it to a '*Similar Cookiecutter Templates*' list here.
-It's up to you whether or not to rename your fork.
-
-If you do rename your fork, I encourage you to submit it to the following places:
-
-* cookiecutter_ so it gets listed in the README as a template.
-* The cookiecutter grid_ on Django Packages.
-
-.. _cookiecutter: https://github.com/audreyr/cookiecutter
-.. _grid: https://www.djangopackages.com/grids/g/cookiecutters/
-
-Or Submit a Pull Request
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-I also accept pull requests on this, if they're small, atomic, and if they make my own project development
-experience better.
