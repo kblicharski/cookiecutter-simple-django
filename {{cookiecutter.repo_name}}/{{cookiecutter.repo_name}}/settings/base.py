@@ -44,27 +44,14 @@ ROOT_URLCONF = '{{cookiecutter.repo_name}}.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = '{{cookiecutter.repo_name}}.wsgi.application'
 
-# DATABASES = {
-#     'default': { {% if cookiecutter.use_sqlite_as_local_db_engine == 'yes' %}
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': '{{cookiecutter.repo_name}}.db',{% else %}
-#         'ENGINE': 'django.db.backends.mysql',
-#         'OPTIONS': {
-#             'read_default_file': 'dbconfig.cnf',
-#         },{% endif %}
-#     }
-# }
-
 DATABASES = {
     'default': { {% if cookiecutter.use_sqlite_as_local_db_engine == 'yes' %}
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': '{{cookiecutter.repo_name}}.db',{% else %}
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '{{cookiecutter.repo_name}}',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',{% endif %}
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': 'dbconfig.cnf',
+        },{% endif %}
     }
 }
 
