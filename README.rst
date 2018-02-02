@@ -8,75 +8,57 @@ A cookiecutter_ template for Django.
 Description
 -----------
 
-Lighter version of the Daniel Greenfeld's cookiecutter-django.
-
-It uses the latest stable versions and it only defines a skeleton which can be extended as needed.
+A customized and opinionated fork of ``cookiecutter-simple-django``, originally
+inspired by Daniel Greenfeld's ``cookiecutter-django``.
 
 Usage
 ------
 
-Let's pretend you want to create a Django project called "redditclone". Rather than using `startproject`
-and then editing the results to include your name, email, and various configuration issues that always get forgotten until the worst possible moment, get cookiecutter_ to do all the work.
+Let's pretend you want to create a Django project called "redditclone".
+Rather than using `startproject` and then editing the results to include your
+name, email, and various configuration issues that always get forgotten until
+the worst possible moment, get cookiecutter_ to do all the work.
 
-First, get cookiecutter. Trust me, it's awesome::
+Set up your virtualenv with virtualenvwrapper and install cookiecutter::
 
-Set up your virtualenv::
-
-    $ cd <your-envs-folder>
-    $ virtualenv  --no-site-packages redditclone
-    $ cd redditclone
-    $ source bin/activate
+    $ mkvirtualenv redditclone
+    $ workon redditclone
     $ pip install cookiecutter
 
-Now run it against this repo::
+Use cookiecutter to clone and configure this repository::
 
     $ cd <your-workspace>
-    $ cookiecutter  https://github.com/marcofucci/cookiecutter-simple-django.git
+    $ cookiecutter https://github.com/thesignalcenter/cookiecutter-simple-django.git
 
-You'll be prompted for some questions, answer them, then it will create a Django project for you.
+It will prompt you for questions. Answer them::
 
+    project_name [project_name]:
+    repo_name [repo_name]:
+    author_name [Your name]:
+    email [Your email]:
+    description [A short description of the project]:
+    year [Current year]:
+    use_sqlite_as_local_db_engine [no]:
 
-**Warning**: After this point, change 'Marco Fucci', etc to your own information.
+If you used the default of "no" for ``use_sqlite_as_local_db_engine``,
+`create a database for the project`_ before continuing.
 
-It prompts you for questions. Answer them::
+.. _`create a database for the project`: https://www.digitalocean.com/community/tutorials/how-to-use-mysql-or-mariadb-with-your-django-application-on-ubuntu-14-04
 
-    Cloning into 'cookiecutter-django'...
-    remote: Counting objects: 443, done.
-    remote: Compressing objects: 100% (242/242), done.
-    remote: Total 443 (delta 196), reused 419 (delta 176)
-    Receiving objects: 100% (443/443), 119.91 KiB | 0 bytes/s, done.
-    Resolving deltas: 100% (196/196), done.
-    project_name (default is "project_name")? redditclone
-    repo_name (default is "repo_name")? redditclone
-    author_name (default is "Your Name")? Marco Fucci
-    email (default is "Your email")? <your-email>
-    description (default is "A short description of the project.")? A reddit clone
-    year (default is "Current year")? 2013
-    with_documentation (default is "yes")? yes
-
-If you are using cookiecutter < 0.7 and you answered *no* to *with_documentation*, you might want to delete the ``docs``
-folder.
-From version 0.7+, that folder is automatically deleted for you.
-
-
-Create the database ``redditclone`` and then set up your project::
+Continue setting up your project::
 
     $ cd redditclone/
-    $ ls
     $ pip install -r requirements/local.txt
     $ python ./manage.py syncdb
     $ python ./manage.py migrate
     $ python ./manage.py runserver
 
-and load localhost:8000/admin
-
-
-Create a GitHub repo and push it there::
+Create a GitHub repo and push your project::
 
     $ git init
     $ git add .
-    $ git commit -m "first awesome commit!"
-    $ git remote add origin git@github.com:marcofucci/redditclone.git
+    $ git commit -m "(build): Initial project config"
+    $ git remote add origin git@vinci.cs.uiowa.edu:kblicharski/example-project-repo.git
     $ git push -u origin master
 
 **Note**: The ``requirements`` files don't define any package versions because it makes
@@ -84,13 +66,11 @@ more sense for you to use the latest ones when you set up your
 project. After that point though, you really want to take note of the specific
 versions installed so that they are not going to get updated without you knowing it.
 
-In order to do this, just activate your virtual environment, pip freeze it and
-update your requirements files::
+In order to do this, activate your virtual environment, and
+update your requirements files using ``pipdeptree``::
 
-    $ activate <your-envs-folder>/redditclone/bin/activate
-    $ pip freeze
-    $ # now open requirements/* and note down the versions used.
-
+    $ workon redditclone
+    $ pipdeptree -f --warn silence | grep '^[a-zA-Z]' > requirements.txt
 
 Structure
 ---------
@@ -105,21 +85,17 @@ If you need to add a dependency please choose the right file.
 
 **Settings**
 
-The ``settings`` folder contains a settings file for each environment and the ``local`` settings should be gitignored.
+The ``settings`` folder contains a settings file for each environment.
 
-If you take a look at ``base.py``, you'll see that it includes the optional module ``local.py``
-in the same folder. There you can override the local values and gitignore will
-exclude it from your commits.
-
-The ``testing.py`` module is loaded automatically after ``base.py`` and ``local.py`` every time you
-run ``python ./manage.py test``.
+The ``testing.py`` module is loaded automatically after ``base.py`` and
+``local.py`` every time you run ``python ./manage.py test``.
 
 **Apps**
 
-The ``apps`` folder should contain all your local django apps, this is to keep
+The ``apps`` folder should contain all your local Django apps in order to keep
 the structure of the project clean.
 
-When it's time to ``python ./manage.py startapp <name>``, just move the generated
+When it's time to ``python ./manage.py startapp <name>``, move the generated
 module to ``apps``. If you want to know why this works, just take a look at the line::
 
     sys.path.insert(0, root('apps'))

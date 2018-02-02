@@ -16,4 +16,3 @@ autopep8
 pipenv
 pip-review
 pipdeptree
-
