@@ -13,6 +13,5 @@ isort
 autopep8
 
 # Utilities
-pipenv
 pip-review
 pipdeptree
