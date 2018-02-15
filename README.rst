@@ -9,7 +9,9 @@ Description
 -----------
 
 A customized and opinionated fork of ``cookiecutter-simple-django``, originally
-inspired by Daniel Greenfeld's ``cookiecutter-django``.
+inspired by Daniel Greenfeld's ``cookiecutter-django``. This fork is personalized
+from the version I created for The Signal Center, intended to be used for
+bootstrapping personal projects and hackathon projects.
 
 Usage
 ------
@@ -28,7 +30,7 @@ Set up your virtualenv with virtualenvwrapper and install cookiecutter::
 Use cookiecutter to clone and configure this repository::
 
     $ cd <your-workspace>
-    $ cookiecutter https://github.com/thesignalcenter/cookiecutter-simple-django.git
+    $ cookiecutter https://github.com/kblicharski/cookiecutter-simple-django.git
 
 It will prompt you for questions. Answer them::
 
@@ -58,7 +60,7 @@ Create a GitHub repo and push your project::
     $ git init
     $ git add .
     $ git commit -m "(build): Initial project config"
-    $ git remote add origin git@vinci.cs.uiowa.edu:kblicharski/example-project-repo.git
+    $ git remote add origin git@github.com:kblicharski/example-project-repo.git
     $ git push -u origin master
 
 **Note**: The ``requirements`` files don't define any package versions because it makes
